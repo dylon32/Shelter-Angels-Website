@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo Gallery</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Shelter Angels</h1>
+            <nav>
+                <div class="hamburger">☰</div>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="article.html">Article</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                </ul>
+            </nav>
+    </header>
+
+    <main class="photo-gallery">
+        <div class="photo"><img src="images/imagesphoto1.jpg" alt="Photo description"></div>
+        <div class="photo"><img src="images/imagesphoto2.jpg" alt="Photo description"></div>
+        <div class="photo"><img src="images/imagesphoto3.jpg" alt="Photo description"></div>
+    </main>
+    <div class="gallery-controls">
+        <button id="prev">Previous Image</button>
+        <button id="next">Next Image</button>
+    </div>
+<script>
+    // Get all photo elements
+    const photos = document.querySelectorAll('.photo');
+    //  run index for current displayed photo
+    let currentPhotoIndex = 0;
+
+    // Show the first image when page loads
+    photos[currentPhotoIndex].style.display = 'block';
+    // Event listener for the previous button
+    document.getElementById('prev').addEventListener('click', function() {
+        photos[currentPhotoIndex].style.display = 'none';
+        currentPhotoIndex = (currentPhotoIndex - 1 + photos.length) % photos.length;
+        photos[currentPhotoIndex].style.display = 'block';
+    });
+    // Event listener for the "Next Image" button
+    document.getElementById('next').addEventListener('click', function() {
+        // Hides current displayed photo
+        photos[currentPhotoIndex].style.display = 'none';
+        // Calc the next photo
+        currentPhotoIndex = (currentPhotoIndex + 1) % photos.length;
+        // Show the next photo
+        photos[currentPhotoIndex].style.display = 'block';
+});
+
+    </script>
+    <!-- toggling navigation on mobile -->
+    <script>
+    document.querySelector('.hamburger').addEventListener('click', function() {
+        document.querySelector('nav ul').classList.toggle('active');
+    });
+    </script>    
+
+</body>
+</html>
